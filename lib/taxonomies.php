@@ -1,5 +1,40 @@
 <?php
 
+add_action( 'init', 'register_taxonomy_features' );
+
+function register_taxonomy_features() {
+
+	$labels = apply_filters('wpmm_features_tax_labels', array(
+		'name' => _x( 'Features', 'Features general name', 'wpmm-map-markers' ),
+		'singular_name' => _x( 'Features', 'Features singular name', 'wpmm-map-markers' ),
+		'search_items' => __( 'Search Features', 'wpmm-map-markers' ),
+		'popular_items' => __( 'Popular Features', 'wpmm-map-markers' ),
+		'all_items' => __( 'All Features', 'wpmm-map-markers' ),
+		'parent_item' => __( 'Parent Feature', 'wpmm-map-markers' ),
+		'parent_item_colon' => __( 'Parent Feature:', 'wpmm-map-markers' ),
+		'edit_item' => __( 'Edit Feature', 'wpmm-map-markers' ),
+		'update_item' => __( 'Update Feature', 'wpmm-map-markers' ),
+		'add_new_item' => __( 'Add New Feature', 'wpmm-map-markers' ),
+		'new_item_name' => __( 'New Feature', 'wpmm-map-markers' ),
+		'separate_items_with_commas' => __( 'Separate Features with commas', 'wpmm-map-markers' ),
+		'add_or_remove_items' => __( 'Add or remove Features', 'wpmm-map-markers' ),
+		'choose_from_most_used' => __( 'Choose from the most used Features', 'wpmm-map-markers' ),
+		'menu_name' => __( 'Features', 'wpmm-map-markers' ),
+	) );
+
+	$args = apply_filters( 'wpmm_map_tax_args', array(
+		'labels' => $labels,
+		'public' => true,
+		'show_in_nav_menus' => true,
+		'show_ui' => true,
+		'show_tagcloud' => true,
+		'hierarchical' => true,
+		'rewrite' => true,
+		'query_var' => true
+	) );
+
+	register_taxonomy( 'wpmm_feature', array( 'wpmm_location' ), $args );
+}
 
 add_action( 'init', 'register_taxonomy_maps' );
 
